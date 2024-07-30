@@ -7,7 +7,7 @@
 // Execute `rustlings hint structs3` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
+
 
 #[derive(Debug)]
 struct Package {
@@ -17,10 +17,14 @@ struct Package {
 }
 
 impl Package {
-    fn new(sender_country: String, recipient_country: String, weight_in_grams: i32) -> Package {
-        if weight_in_grams <= 0 {
+    fn new(sender_country: String, recipient_country: String, weight_in_grams: i32) -> Package 
+    {
+        if weight_in_grams <= 0
+        {
             panic!("Can not ship a weightless package.")
-        } else {
+        } 
+        else 
+        {
             Package {
                 sender_country,
                 recipient_country,
@@ -29,22 +33,37 @@ impl Package {
         }
     }
 
-    fn is_international(&self) -> ??? {
+    fn is_international(&self) -> bool {
         // Something goes here...
+        if self.sender_country == self.recipient_country 
+        {
+            false
+        }
+        else 
+        {
+            true
+        }
     }
 
-    fn get_fees(&self, cents_per_gram: i32) -> ??? {
+    fn get_fees(&self, cents_per_gram: i32) -> i32 {
         // Something goes here...
+        if cents_per_gram < 0
+        {
+            return 0
+        }
+        self.weight_in_grams*cents_per_gram
     }
 }
 
 #[cfg(test)]
-mod tests {
+mod tests 
+{
     use super::*;
 
     #[test]
     #[should_panic]
-    fn fail_creating_weightless_package() {
+    fn fail_creating_weightless_package() 
+    {
         let sender_country = String::from("Spain");
         let recipient_country = String::from("Austria");
 
@@ -52,7 +71,8 @@ mod tests {
     }
 
     #[test]
-    fn create_international_package() {
+    fn create_international_package() 
+    {
         let sender_country = String::from("Spain");
         let recipient_country = String::from("Russia");
 
@@ -62,7 +82,8 @@ mod tests {
     }
 
     #[test]
-    fn create_local_package() {
+    fn create_local_package() 
+    {
         let sender_country = String::from("Canada");
         let recipient_country = sender_country.clone();
 
@@ -72,7 +93,8 @@ mod tests {
     }
 
     #[test]
-    fn calculate_transport_fees() {
+    fn calculate_transport_fees() 
+    {
         let sender_country = String::from("Spain");
         let recipient_country = String::from("Spain");
 
